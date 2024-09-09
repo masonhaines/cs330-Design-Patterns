@@ -1,31 +1,19 @@
 public class Main {
     public static void main(String[] args) 
     {   
-        // Checking to see if cash payment method works 
-        // CashPayment cash = new CashPayment();
-        // float change = cash.getChange(21.077f, 22.0f);
-        // System.out.println("Change to be returned: " + cash.getChange(21.0f, 21.0f)); 
 
-        // Create an instance of the KioskSystem class
         KioskSystem kioskSystem = new KioskSystem();
-
-        // Initialize CashPayment
         kioskSystem.cash = new CashPayment();
 
-        // Call methods in sequence
-        // kioskSystem.orderNumber();  // Get the order number
-        // kioskSystem.getCostOfSale();
-        // kioskSystem.getAmountPaid();  // Get the amount paid from the user
-        
-
-        // Calculate and display change
-        // kioskSystem.cash.getChange(kioskSystem.costOfSale.cost, kioskSystem.paid.amount);
-        // kioskSystem.cash.displayChange();
+        StoreSystem storeSystem = new StoreSystem();
+        storeSystem.card = new CardPayment();
+        storeSystem.cash = new CashPayment();
 
         boolean validEntry = false;
-
+       
         while(!validEntry) // Continue loop if entry is not valid
-        {
+        {   
+            System.out.println("Kiosk***********************************************************************Kiosk");
             kioskSystem.orderNumber();  // Get the order number
             validEntry = kioskSystem.getCostOfSale();  // Get the cost of sale from the user
             
@@ -37,12 +25,41 @@ public class Main {
                 validEntry = kioskSystem.getChange();  // Calculate and display change
             }
 
-            if (!validEntry) {
+            System.out.println("Store***********************************************************************Store");
+            storeSystem.orderNumber(); // Get order Number
+            // storeSystem.paymentType(); // Not being used but implemented 
+            
+            // Card
+            validEntry = storeSystem.getCostOfSale();  // Get the cost of sale from the user
+
+            if (validEntry) {
+                validEntry = storeSystem.getCardNumber();  // Get Card number
+            }
+            
+            // Cash
+            System.out.println("Store***********************************************************************Store");
+            storeSystem.orderNumber(); // Get order Number
+            validEntry = storeSystem.getCostOfSale();  // Get the cost of sale from the user
+        
+            if (validEntry) {
+                validEntry = storeSystem.getAmountPaid();  // Get the amount paid from the user
+            }
+            
+            if (validEntry) {
+                validEntry = storeSystem.getChange();  // Calculate and display change
+            }
+
+            if (!validEntry) { // if not a valid entry  reset loop
                 
                 for (int i = 0; i < 10; i++) {System.out.println(">");}
                 System.out.println("Invalid entries, try again.");
             }
+            
+
         }
-        
+    
     }
+        
+        
+    
 }
