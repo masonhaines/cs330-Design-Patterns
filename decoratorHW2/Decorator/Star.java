@@ -7,7 +7,6 @@ public class Star extends TreeDecorator{
         StarAddedDescription = false;
         StarAddedCost = false;
         this.tree = tree;
-        
     }
 
     public String getDescription() {
