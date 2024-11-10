@@ -2,7 +2,7 @@ public class MakeShake implements Order /*Command*/{
 
     ShortOrderCook cook;
 
-    public MakeShake(ShortOrderCook receiver)
+    public MakeShake(ShortOrderCook receiver) // Action
     {
         System.out.println("Adding a shake to your order! ");
         this.cook = receiver;

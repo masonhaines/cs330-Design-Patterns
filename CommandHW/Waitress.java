@@ -1,23 +1,20 @@
 public class Waitress { // Invoker 
 
     Order orderSlip; // command object
-    MakeBurger burger;
-    MakeShake shake;
 
     public Waitress() {}
 
-    public void takeOrder(Order order) // set command
+    public void SetCommand(Order order) // set command Take Order
     {
-
         orderSlip = order;
         // System.out.println("Test from waitress, from take order method."); // For testing, comment out if good to push :)
     }
 
-    public void OrderUp()
+    public void OrderUpExecution()
     {   
-        System.out.println();
         orderSlip.execute();
         System.out.println("Order Up! ");
+        System.out.println();
     }
 
 }

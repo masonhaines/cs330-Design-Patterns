@@ -2,7 +2,7 @@ public class MakeBurger implements Order/*Command*/{
 
     ShortOrderCook cook;
 
-    public MakeBurger(ShortOrderCook receiver)
+    public MakeBurger(ShortOrderCook receiver) // Action
     {
         System.out.println("Adding a burger to your order! ");
         this.cook = receiver;
