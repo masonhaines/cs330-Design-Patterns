@@ -1,0 +1,17 @@
+Subproblem Table:
+Day
+0 |    0   -1   -1   -1   -1
+1 |    0   80   -1   -1   -1
+2 |   80   10   90   -1   -1
+3 |   90  150   50  110   -1
+4 |  150  160  190   70  120
+
+Choices Array (1=Work, 0=Rest):
+Day
+0 |    0   -1   -1   -1   -1
+1 |    0    1   -1   -1   -1
+2 |    0    1    1   -1   -1
+3 |    0    1    1    1   -1
+4 |    0    1    1    1    1
+
+Optimal value for the entire problem: 190
