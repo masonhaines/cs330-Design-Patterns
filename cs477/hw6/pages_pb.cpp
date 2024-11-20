@@ -31,7 +31,10 @@ int main() {
                 } else { 
                     subproblem[i][j] = min(pages[i], efficiency[j]) + subproblem[i - 1][j - 1];
                 }
-                maxValue = max(maxValue, subproblem[i][j]); // find new maximum value of day 
+                // find new maximum value of day 
+                if (subproblem[i][j] > maxValue) {
+                    maxValue = subproblem[i][j];
+                } 
             }
         }
     }

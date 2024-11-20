@@ -23,13 +23,13 @@ int main() {
             choicesArray[i][j] = {-1};
         }
     }
-    
 
     int maxValue = 0;
     // Iterate over each day
     for (int i = 0; i <= n; i++) {
         for (int j = 0; j <= n; j++) {
-            if (j <= i){
+            if (j <= i)
+            {
                 if (i == 0) { // base case // set to zero because if on day zero no work is being done it is technically a rest day
                     choicesArray[i][j] = 0; 
                     subproblem[i][j] = 0;
@@ -37,7 +37,7 @@ int main() {
                     choicesArray[i][j] = 0; 
                     subproblem[i][j] = maxValue;
                 } else { // efficiency cannot be larger than day or all of table will be populated/calculated and will not be tabulation
-                    choicesArray[i][j] = 1; 
+                    choicesArray[i][j] = j; 
                     subproblem[i][j] = min(pages[i], efficiency[j]) + subproblem[i - 1][j - 1];
                 }
                 // find new maximum value of day
@@ -45,7 +45,6 @@ int main() {
                     maxValue = subproblem[i][j];
                 }  
             }
-            
         }
     }
 
@@ -92,13 +91,11 @@ int main() {
         return 1;
     }
 
-    // Print header for table 
+    // Print header
     outFile << "Subproblem Table:" << endl;
-    outFile << "Day" << endl;
 
-    // Write subproblem table to the file
+    // Write subproblm table to the file
     for (int i = 0; i <= n; i++) {
-        outFile << i << " |";
         for (int j = 0; j <= n; j++) {
             outFile << setw(5) << subproblem[i][j]; // Print calculated result of the subproblem
         }
@@ -108,12 +105,10 @@ int main() {
     outFile << endl;
 
     // Print header for table 
-    outFile << "Choices Array (1=Work, 0=Rest):" << endl;
-    outFile << "Day" << endl;
+    outFile << "Choices Array (1 - 4 = Work and level of efficiency, 0=Rest):" << endl;
 
     // Write choices table to the file
     for (int i = 0; i <= n; i++) {
-        outFile << i << " |";
         for (int j = 0; j <= n; j++) {
             outFile << setw(5) << choicesArray[i][j]; // print choices
         }

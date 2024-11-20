@@ -1,0 +1,6 @@
+Optimal Schedule: 
+-Work
+-Day Off 
+-Work
+-Work
+
