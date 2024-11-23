@@ -26,5 +26,9 @@ namespace Model{ // Everything that is data related
         {
             return taskList;
         }
+
+        void ReadFile_InitTaskList(){
+            
+        }
     };
 };

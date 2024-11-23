@@ -1,6 +1,7 @@
 #include <iomanip>
 #include <iostream>
 #include <string>
+#include <iomanip> 
 #include <list>
 using namespace std;
 
@@ -17,8 +18,7 @@ namespace View{ // Everything that is UI related
         {
             cout << "Welcome to your To Do List\n\n";
     
-            // give options for stuff to do
-            //option 1
+            // give options for stuff to do in application
             cout << "1. Add to my list\n";
             cout << "2. Show to do list\n";
             cout << "0. Exit to do list\n\n";
@@ -34,14 +34,31 @@ namespace View{ // Everything that is UI related
 
         void displayToDoList(list<string> toDoList)
         {
-            cout << setw(10) << "-------Your to do list-------\n";
-            cout << "you currently have " << toDoList.size() << "Tasks in your to do list.\n";
+            displayUnfinishedTasks(toDoList);
+        
+            cout << std::setw(10) << ' ' << "Your to do list";
+            cout << "\n***********************************\n";
+            cout << endl;
+
+            int numTask = 1;
             for(auto iterator = toDoList.begin(); iterator != toDoList.end(); iterator++){
-                cout << ' ' << *iterator;
+                cout << std::setw(5)<< numTask << ". " << *iterator;
                 cout << endl;
+                numTask++;
             }
 
             cout << "\n\n";
+        }
+
+        void displayUnfinishedTasks(list<string> toDoList)
+        {
+            if(toDoList.size()){
+                cout << "\nYou currently have " << toDoList.size() << " task() in your to do list.\n\n";
+            } else
+            {
+                cout << "\nNo tasks to count! You have added " << toDoList.size() << " tasks to your to do list.\n\n";
+            }
+            
         }
 
         string CheckIfEmptyTask(string newTask)
