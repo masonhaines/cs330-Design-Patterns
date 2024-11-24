@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iterator>
 #include <string>
 #include <list>
 #include <fstream>
@@ -34,6 +35,15 @@ namespace Model
         list<string>& getTaskList() 
         {
             return taskList;
+        }
+
+        // removes one task from to do list 
+        void removeFromTaskList(int taskNumber)
+        {
+            auto iterator = taskList.begin(); // initialize iterator to beginning of element of list
+            advance(iterator, taskNumber); // increment iterators positions 
+            // cout << *iterator << " Value that was just removed\n\n\n"; // THIS IS FOR TESTING REMOVED VALUE
+            taskList.erase(iterator); // erase single element at iterator index within list
         }
 
         // Mainly for testing and checking list through out code
