@@ -12,25 +12,25 @@ namespace Control{ // Everything that is logic related
         Model::TDLModel* newTaskModel;
 
     public:
-        
-
+    
         TDLControl(View::TDLView* NewTaskView, Model::TDLModel* newTaskModel)
         {
             this->newTaskView = NewTaskView;
             this->newTaskModel = newTaskModel;
-            
-            // TDL_Logic();
         }
 
         void MainController()
         { 
+            list<string>& taskList = newTaskModel->getTaskList();
+            newTaskModel->ReadFile_InitTaskList(taskList);
+
             int userChoice = -99;
             while(userChoice != -1)
             {
                 // if user choice is zero write back to file and set user choice to -99 to end while loop
                 if(userChoice == 0)
                 {
-                    newTaskModel->WriteFile_FromTaskList(newTaskModel->getTaskList());
+                    newTaskModel->WriteFile_FromTaskList(taskList);
                     userChoice = -1;
                 }
                 else 
@@ -52,12 +52,11 @@ namespace Control{ // Everything that is logic related
 
             newTaskModel->setNewTask(tempNewTask); // set new task to user input new task 
 
-            newTaskView->displayNewlyAddedtask(newTaskModel->getNewestTask());
+            newTaskView->displayNewlyAddedtask(newTaskModel->getNewestTask()); // Display newly added task 
         }    
 
         void Controller_DisplayToDoList()
         {
-            newTaskModel->ReadFile_InitTaskList(newTaskModel->getTaskList());
             newTaskView->displayToDoList(newTaskModel->getTaskList());
         }
     };

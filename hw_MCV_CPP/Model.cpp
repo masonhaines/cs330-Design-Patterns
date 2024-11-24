@@ -27,7 +27,7 @@ namespace Model{ // Everything that is data related
             return taskList.back();
         }
 
-        list<string> getTaskList()
+        list<string>& getTaskList()
         {
             return taskList;
         }
@@ -40,7 +40,7 @@ namespace Model{ // Everything that is data related
             return false;
         }
 
-        void ReadFile_InitTaskList(list<string> taskList){
+        void ReadFile_InitTaskList(list<string>& taskList){
             string tempTask;
 
             ifstream inFile(filename);
@@ -51,13 +51,13 @@ namespace Model{ // Everything that is data related
             while(getline(inFile, tempTask))
             {
                 taskList.push_back(tempTask);
-                cout << "oi!" << taskList.back() << endl;
+                // cout << "TEST" << taskList.back() << endl; // For testing
             }
 
             inFile.close();
         }
 
-        void WriteFile_FromTaskList(list<string> taskList)
+        void WriteFile_FromTaskList(list<string>& taskList)
         {
             ofstream outFile(filename);
             if (!outFile){

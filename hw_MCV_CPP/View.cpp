@@ -52,7 +52,7 @@ namespace View{ // Everything that is UI related
         void displayUnfinishedTasks(list<string> toDoList)
         {
             if(toDoList.size()){
-                cout << "\nYou currently have " << toDoList.size() << " task() in your to do list.\n\n";
+                cout << "\nYou currently have " << toDoList.size() << " task(s) in your to do list.\n\n";
             } else
             {
                 cout << "\nNo tasks to count! You have added " << toDoList.size() << " tasks to your to do list.\n\n";
