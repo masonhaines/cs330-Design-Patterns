@@ -13,6 +13,7 @@ namespace View{ // Everything that is UI related
         string inputTask;
         int inputInt;
 
+
         void DisplayOptions()
         {
             cout << "Welcome to your To Do List\n\n";

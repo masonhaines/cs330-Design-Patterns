@@ -24,41 +24,43 @@ namespace Control{ // Everything that is logic related
 
         void MainController()
         { 
-            int userChoice = -99;
-            while(userChoice != -1)
+            int userChoice = -1;
+            while(userChoice != 0)
             {
-                // if user choice is zero write back to file and set user choice to -99 to end while loop
-                if(userChoice == 0)
-                {
-                    newTaskModel->WriteFile_FromTaskList(newTaskModel->getTaskList());
-                    userChoice = -1;
-                }
-                else 
-                {
-                    newTaskView->DisplayOptions(); 
+                newTaskView->DisplayOptions(); 
 
-                    userChoice = newTaskView->getUserInt();
-                    cin.ignore(); // used to clear buffer
+                userChoice = newTaskView->getUserInt();
+                cin.ignore(); // used to clear buffer
 
-                    if(userChoice == 1) { Controller_AddNewTask(); } // Add new task 
-                    else if (userChoice == 2) { Controller_DisplayToDoList(); } // Display the entire to do list 
-                }
+                if(userChoice == 1) { Controller_AddNewTask(); } // Add new task 
+                else if (userChoice == 2) {Controller_DisplayToDoList();} // Display the entire to do list 
             }
         }
 
         void Controller_AddNewTask()
         {
+            
             string tempNewTask = newTaskView->getUserTask(); // initialize new task to be passed by reference '
 
             newTaskModel->setNewTask(tempNewTask); // set new task to user input new task 
-
             newTaskView->displayNewlyAddedtask(newTaskModel->getNewestTask());
+            
         }    
 
         void Controller_DisplayToDoList()
         {
-            newTaskModel->ReadFile_InitTaskList(newTaskModel->getTaskList());
-            newTaskView->displayToDoList(newTaskModel->getTaskList());
+            if(newTaskModel->TaskListEmpty())
+            {
+                cout << "not finished with this part yet :<>\n\n";
+            }
+            else 
+            {
+                newTaskView->displayToDoList(newTaskModel->getTaskList());
+            }
+            
+
+
+            
         }
     };
 };
