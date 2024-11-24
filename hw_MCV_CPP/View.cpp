@@ -5,7 +5,8 @@
 #include <list>
 using namespace std;
 
-namespace View{ // Everything that is UI related 
+namespace View
+{ // Everything that is UI related 
     class TDLView
     {
     public:

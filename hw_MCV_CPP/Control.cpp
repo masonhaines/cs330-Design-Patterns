@@ -1,9 +1,11 @@
 #include <iostream>
+// Control should be the only class that has composition with the other classes
 #include "View.cpp"
 #include "Model.cpp"
 using namespace std;
 
-namespace Control{ // Everything that is logic related 
+namespace Control
+{ // Everything that is logic related 
     class TDLControl
     {
     private:

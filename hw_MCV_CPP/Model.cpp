@@ -5,7 +5,8 @@
 #include <iomanip> 
 using namespace std;
 
-namespace Model{ // Everything that is data related 
+namespace Model
+{ // Everything that is data related 
     class TDLModel
     {
     private:
@@ -16,22 +17,26 @@ namespace Model{ // Everything that is data related
     public:
 
         TDLModel() : filename("ToDoList.txt")  {}
-            
+        
+        // Set &newtask as last value in list
         void setNewTask(string& newTask)
         {
             taskList.push_back(newTask);
         }
 
+        // Get most recently added value in list 
         string getNewestTask()
         {
             return taskList.back();
         }
 
-        list<string>& getTaskList()
+        // return task list by reference or will be copied and not manipulated 
+        list<string>& getTaskList() 
         {
             return taskList;
         }
 
+        // Mainly for testing and checking list through out code
         bool TaskListEmpty(){
             if(taskList.empty()){
                 return true;
@@ -40,6 +45,7 @@ namespace Model{ // Everything that is data related
             return false;
         }
 
+        // reads tsks from the file and fills the given task list by reference
         void ReadFile_InitTaskList(list<string>& taskList){
             string tempTask;
 
@@ -50,13 +56,14 @@ namespace Model{ // Everything that is data related
 
             while(getline(inFile, tempTask))
             {
-                taskList.push_back(tempTask);
+                taskList.push_back(tempTask); // sends the temp task value to the end of the list
                 // cout << "TEST" << taskList.back() << endl; // For testing
             }
 
             inFile.close();
         }
 
+        // Writes the given &task list back to the file with *iterator to the file
         void WriteFile_FromTaskList(list<string>& taskList)
         {
             ofstream outFile(filename);
