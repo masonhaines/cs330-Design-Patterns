@@ -1,7 +1,7 @@
 all: tdl
 
 tdl: Main.o View.o Model.o Control.o
-	g++ -o tdl Main.o View.o Model.o Control.o
+	g++ -o tdl Main.o View.o Model.o Control.o 
 
 Main.o: Main.cpp
 	g++ -c Main.cpp
