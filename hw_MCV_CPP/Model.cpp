@@ -1,9 +1,8 @@
 #include <iostream>
-#include <iterator>
+// #include <iterator>
 #include <string>
 #include <list>
 #include <fstream>
-#include <iomanip> 
 using namespace std;
 
 namespace Model
@@ -74,7 +73,7 @@ namespace Model
         }
 
         // Writes the given &task list back to the file with *iterator to the file
-        void WriteFile_FromTaskList(list<string>& taskList)
+        void WriteListToFile(list<string>& taskList)
         {
             ofstream outFile(filename);
             if (!outFile){
@@ -86,6 +85,21 @@ namespace Model
                     outFile << *iterator;
                     outFile << endl;
                 }
+                outFile.close();
+            }
+        }
+
+        // Writes the given &task list back to the file with *iterator to the file
+        void WriteSingleTaskToFile(list<string>& taskList)
+        {
+            ofstream outFile(filename, ios::app); // append new output to end of file
+            if (!outFile){
+                cerr << "Error opening file up file for to do list init" << endl;
+            }
+            else if(outFile.is_open())
+            {
+                auto iterator = taskList.back();
+                outFile << iterator;
                 outFile.close();
             }
         }

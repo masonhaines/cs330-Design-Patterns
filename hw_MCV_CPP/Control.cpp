@@ -24,11 +24,9 @@ namespace Control
 
         // This is the main controller for calling all other controller functionalities
         // this method also calls the model method that initializes the list
-        // also writes the modifications to the list back to the file using model method 
         void MainController()
         { 
-            list<string>& taskList = newTaskModel->getTaskList();
-            newTaskModel->ReadFile_InitTaskList(taskList);
+            ReadFromDataBase();
 
             int userChoice = -99;
             while(userChoice != -1)
@@ -36,7 +34,6 @@ namespace Control
                 // if user choice is zero write back to file and set user choice to -99 to end while loop
                 if(userChoice == 0)
                 {
-                    newTaskModel->WriteFile_FromTaskList(taskList);
                     userChoice = -1;
                 }
                 else 
@@ -61,6 +58,8 @@ namespace Control
             newTaskModel->setNewTask(tempNewTask); // set new task to user input new task 
 
             newTaskView->displayNewlyAddedtask(newTaskModel->getNewestTask()); // Display newly added task 
+
+            WriteTaskToDataBase(); // update database with single new task
         }  
 
         // Controller method to remove a specific task from the to do list<string>
@@ -73,11 +72,35 @@ namespace Control
             {
                 newTaskModel->removeFromTaskList(removeChoice);
             }
+
+            WriteListToDataBase(); // update database with updated to do list
         }  
         // Controller method to display the todo list<string>
         void Controller_DisplayToDoList()
         {
             newTaskView->displayToDoList(newTaskModel->getTaskList());
+        }
+
+        // Method to overwrite database if task is removed ie completed
+        void WriteListToDataBase()
+        {
+            list<string>& taskList = newTaskModel->getTaskList();
+            newTaskModel->WriteListToFile(taskList);
+        }
+
+        // Method used to call model function to add new task to database
+        void WriteTaskToDataBase()
+        {
+            list<string>& taskList = newTaskModel->getTaskList();
+            newTaskModel->WriteSingleTaskToFile(taskList);
+        }
+
+        // Method that initializes a list for inside of controller to read from file
+        // Later list will be used to overwrite data base if task is removed
+        void ReadFromDataBase()
+        {
+            list<string>& taskList = newTaskModel->getTaskList();
+            newTaskModel->ReadFile_InitTaskList(taskList);
         }
     };
 };

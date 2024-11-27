@@ -1,8 +1,7 @@
 #include <iomanip>
 #include <iostream>
-#include <iterator>
+// #include <iterator>
 #include <string>
-#include <iomanip> 
 #include <list>
 using namespace std;
 
@@ -12,10 +11,12 @@ namespace View
     {
     public:
 
+        // Variables for all user input 
         string inputTask;
         int inputInt;
         char inputChar;
 
+        // Main menu for for to do list  
         void DisplayOptions()
         {
             cout << "Welcome to your To Do List\n\n";
@@ -29,12 +30,14 @@ namespace View
             cout << "Please enter the option value: ";
         }
 
+        // Show the user once again the new task that they added to their to do list
         void displayNewlyAddedtask(string newTask)
         {
             newTask = CheckIfEmptyTask(newTask);
             cout << "\nNew Task added to your list: " << newTask << "\n\n";
         }
 
+        // Prompt to ask what task they have completed, ie would like to remove from the to do list 
         void displayRemovePrompt(list<string> toDoList)
         {
             cout << "\n\nWhat task have you completed?\n";
@@ -42,6 +45,7 @@ namespace View
             cout << "Task number: ";
         }
 
+        // Method to verify that the user truly wants to remove a task from the task list 
         bool verifyTaskRemoval(list<string> toDoList, int removeChoice)
         {
             auto iterator = toDoList.begin();
@@ -70,6 +74,7 @@ namespace View
             return false;
         }
 
+        // Display list that has been initialized from the data base and updated
         void displayToDoList(list<string> toDoList)
         {
             displayUnfinishedTasks(toDoList);
@@ -88,6 +93,7 @@ namespace View
             cout << "\n\n";
         }
 
+        // Display the number of tasks on list, that has been initialized from the data base and updated
         void displayUnfinishedTasks(list<string> toDoList)
         {
             if(toDoList.size()){
@@ -98,6 +104,7 @@ namespace View
             }
         }
 
+        // Check if the task that was entered is empty
         string CheckIfEmptyTask(string newTask)
         {
             if(newTask.empty()){
@@ -108,6 +115,7 @@ namespace View
             return newTask;
         }
 
+        // Get user input for new task that will be added to list
         string getUserTask()
         {
             cout << "My new task is.... ";
@@ -116,7 +124,7 @@ namespace View
             return inputTask;
         }
 
-        char getUserChar()
+        char getUserChar() // get user input as chaar for yes or no prompts
         {
             cin >> inputChar;
             
@@ -129,9 +137,8 @@ namespace View
             return inputChar;
         }
 
-        int getUserInt()
+        int getUserInt() // get user input as integer
         {
-            
             cin >> inputInt;
             return inputInt;
         }
