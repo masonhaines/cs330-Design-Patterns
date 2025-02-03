@@ -1,5 +1,4 @@
 #include <iostream>
-// #include <iterator>
 #include <string>
 #include <list>
 #include <fstream>
@@ -99,7 +98,7 @@ namespace Model
             else if(outFile.is_open())
             {
                 auto iterator = taskList.back();
-                outFile << iterator;
+                outFile << iterator << endl;
                 outFile.close();
             }
         }
