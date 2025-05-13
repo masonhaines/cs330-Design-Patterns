@@ -19,7 +19,7 @@ public class CardPayment implements PaymentInterface{
             amountPaid = cost.getAmountPaid();
             cost.getChange(Cost, amountPaid);
         }
-        else if (userInput == 2) // Card
+        else if (userInput == 2) // Card~
         {
             stores.orderNumber();
             cost.setCostOfSale(cin);
